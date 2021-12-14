@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-var mystring string = "Hello Ryan"
+// var mystring string = "Hello Ryan"
 var myint int = 20
 
 // this is a comment
@@ -17,8 +17,8 @@ a multiline comment
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
-
-	sayHelloWorld(anotherVar,myint)
+	result, _ := reader.ReadString('\n')
+	sayHelloWorld(result,myint)
 }
 
 func sayHelloWorld(whatToSay string,howManyTimes int){

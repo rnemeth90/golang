@@ -1,9 +1,5 @@
 package main
 
-import (
-	"packageone"
-)
-
 var myVar string = ""
 
 func main() {

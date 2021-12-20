@@ -3,37 +3,54 @@ package main
 import (
 	"fmt"
 	"log"
+	"strconv"
 
 	"github.com/eiannone/keyboard"
 )
 
 func main() {
-	err := keyboard.Open()
+	e := keyboard.Open()
 
-	if err != nil {
-		log.Fatal(err)
+	if e != nil {
+		log.Fatal(e)
 	}
 
 	defer func() {
 		_ = keyboard.Close()
 	}()
 
-	fmt.Println("Press any key on the keyboard. Press ESC to quit.")
+	coffees := make(map[int]string)
+	coffees[1] = "Cappacino"
+	coffees[2] = "Latte"
+	coffees[3] = "Americano"
+	coffees[4] = "Mocha"
+	coffees[5] = "Machiatto"
+	coffees[6] = "Expresso"
+
+	fmt.Println("MENU")
+	fmt.Println("----")
+	fmt.Println("1 - Cappucino")
+	fmt.Println("2 - Latte")
+	fmt.Println("3 - Americano")
+	fmt.Println("4 - Mocha")
+	fmt.Println("5 - Machiatto")
+	fmt.Println("6 - Expresso")
+	fmt.Println("Q - Quit")
 
 	for {
-		char, key, err := keyboard.GetSingleKey()
-		if err != nil {
-			log.Fatal(err)
+		char, _, e := keyboard.GetSingleKey()
+
+		if e != nil {
+			log.Fatal(e)
 		}
 
-		if key != 0 {
-			fmt.Println("You pressed", char, key)
-		} else {
-			fmt.Println("You pressed", char)
-		}
+		i, _ := strconv.Atoi(string(char))
 
-		if key == keyboard.KeyEsc {
+		if char == 'q' || char == 'Q' {
 			break
+		} else {
+			fmt.Println(fmt.Sprintf("You chose %s", coffees[i]))
 		}
+
 	}
 }

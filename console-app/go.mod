@@ -1,8 +1,5 @@
-module console-app
+module myapp
 
-go 1.17
+go 1.13
 
-require (
-	github.com/eiannone/keyboard v0.0.0-20200508000154-caf4b762e807 // indirect
-	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
-)
+require golang.org/x/tools v0.1.10 // indirect
